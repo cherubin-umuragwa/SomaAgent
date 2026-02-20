@@ -61,7 +61,7 @@ const ParentDashboard: React.FC<ParentDashboardProps> = ({ onLogout, school, use
         {!linkedStudent ? (
           <div className="bg-white p-8 rounded-[32px] shadow-xl border-2 border-crane-yellow/30 animate-in slide-in-from-bottom-4">
             <h2 className="font-bold text-uni-blue text-lg mb-2">Track Student Progress</h2>
-            <p className="text-xs text-slate-500 mb-6 leading-relaxed">To view results and syllabus mastery, enter the unique <b>Soma Code</b> shown on your child's dashboard.</p>
+            <p className="text-xs text-slate-500 mb-6 leading-relaxed">To view results and syllabus mastery, enter the unique <b>Soma Code</b> shown on your child&apos;s dashboard.</p>
             
             <div className="space-y-4">
               <div className="relative">

@@ -33,6 +33,7 @@ const AcademicDashboard: React.FC<Props> = ({ onLogout, school, userProfile }) =
 
   useEffect(() => {
     loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
   const loadData = async () => {
@@ -59,9 +60,13 @@ const AcademicDashboard: React.FC<Props> = ({ onLogout, school, userProfile }) =
   const handleCreateClass = async () => {
     if (!newClassName) return;
     const newCls = await createSchoolClass(school.name, newClassName, newClassLevel);
-    setClasses(prev => [...prev, newCls]);
-    setNewClassName('');
-    alert(`Class ${newClassName} Created.`);
+    if (newCls) {
+      setClasses(prev => [...prev, newCls]);
+      setNewClassName('');
+      alert(`Class ${newClassName} Created.`);
+    } else {
+      alert('Failed to create class.');
+    }
   };
 
   const handleAssign = async () => {

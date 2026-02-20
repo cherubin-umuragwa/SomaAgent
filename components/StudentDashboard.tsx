@@ -27,15 +27,15 @@ const StudentDashboard: React.FC<Props> = ({ onLogout, resources: initialResourc
 
   useEffect(() => {
     const loadData = async () => {
-      const dbResources = await fetchClassResources(school.name);
+      const dbResources = await fetchClassResources(userProfile.schoolId);
       setLiveResources(dbResources);
       const fb = await fetchStudentFeedback(userProfile.id);
       setFeedback(fb);
-      const ex = await fetchUpcomingExams();
+      const ex = await fetchUpcomingExams(userProfile.schoolId);
       setExams(ex);
     };
     loadData();
-  }, [school.name, userProfile.id]);
+  }, [userProfile.schoolId, userProfile.id]);
 
   const handleTriggerChallenge = (topic: string) => {
     setChallengeTopic(topic);
@@ -171,7 +171,7 @@ const StudentDashboard: React.FC<Props> = ({ onLogout, resources: initialResourc
                   <h4 className="text-xs font-black uppercase tracking-[0.2em] opacity-60">Active Study Time</h4>
                   <div className="my-2">
                     <p className="text-4xl font-black tracking-tighter">12.5 <span className="text-lg font-bold opacity-60">hrs</span></p>
-                    <p className="text-[10px] font-bold text-crane-yellow uppercase tracking-widest mt-1">This Week's Goal: 15h</p>
+                    <p className="text-[10px] font-bold text-crane-yellow uppercase tracking-widest mt-1">This Week&apos;s Goal: 15h</p>
                   </div>
                   <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-4">
                     <div className="bg-crane-yellow h-full w-[83%] rounded-full shadow-[0_0_8px_rgba(252,220,4,0.5)]" />

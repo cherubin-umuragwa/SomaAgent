@@ -42,11 +42,11 @@ const TeacherDashboard: React.FC<Props> = ({ onLogout, resources, onAddResource,
     const loadSubjectData = async () => {
       const progress = await fetchStudentProgress(selectedSubject);
       setStudentList(progress);
-      const exams = await fetchUpcomingExams(selectedSubject);
+      const exams = await fetchUpcomingExams(userProfile.schoolId, selectedSubject);
       setUpcomingExams(exams);
     };
     loadSubjectData();
-  }, [selectedSubject]);
+  }, [selectedSubject, userProfile.schoolId]);
 
   const handlePublishResource = (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,10 +78,12 @@ const TeacherDashboard: React.FC<Props> = ({ onLogout, resources, onAddResource,
       subject: selectedSubject,
       duration: '1 Hour',
       status: 'upcoming'
-    });
-    setUpcomingExams([...upcomingExams, n]);
-    setExamTitle(''); setExamDate('');
-    alert("Exam scheduled and students notified.");
+    }, userProfile.schoolId);
+    if (n) {
+      setUpcomingExams([...upcomingExams, n]);
+      setExamTitle(''); setExamDate('');
+      alert("Exam scheduled and students notified.");
+    }
   };
 
   return (
